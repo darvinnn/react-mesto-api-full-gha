@@ -1,0 +1,13 @@
+.profile__title {
+  display: flex;
+  align-items: flex-end;
+  gap: 19px;
+}
+
+@media (max-width: 720px) {
+  .profile__title {
+    gap: 10px;
+    justify-content: center;
+    padding-left: 28px;
+  }
+}

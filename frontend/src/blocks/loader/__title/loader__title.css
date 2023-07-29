@@ -1,0 +1,10 @@
+.loader__title {
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 500;
+  margin: 50px auto;
+  max-width: 450px;
+  color: white;
+  text-align: center;
+  flex-grow: 1;
+}

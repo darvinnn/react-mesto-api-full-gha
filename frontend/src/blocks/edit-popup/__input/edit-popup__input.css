@@ -1,0 +1,5 @@
+.edit-popup__input {}
+
+.edit-popup__input:first-of-type {
+  margin-top: 0;
+}

@@ -1,0 +1,9 @@
+.edit-popup__title {
+  padding-bottom: 47px;
+}
+
+@media (max-width:480px) {
+  .edit-popup__title {
+    padding-bottom: 73px;
+  }
+}
