@@ -110,7 +110,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'http://api.nikolaev-maxim-mesto.nomoreparties.co',
+  baseUrl: 'https://api.nikolaev-maxim-mesto.nomoreparties.co',
 });
 
 

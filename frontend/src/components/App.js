@@ -60,8 +60,7 @@ function App() {
       .then(({ token }) => {
         if (token) {
           localStorage.setItem('jwt', token)
-          setIsLoggedIn(true)
-          navigate('/')
+          checkLocalToken()
         }
       })
       .catch(err => {
@@ -140,7 +139,7 @@ function App() {
 
   useEffect(() => {
     checkLocalToken()
-  }, [isLoggedIn, isLoading])
+  }, [])
 
   useEffect(() => {
     function closeByEscape(evt) {

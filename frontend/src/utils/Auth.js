@@ -1,4 +1,4 @@
-const BASE_URL = 'http://api.nikolaev-maxim-mesto.nomoreparties.co'
+const BASE_URL = 'https://api.nikolaev-maxim-mesto.nomoreparties.co'
 
 function register({ email, password }) {
   return fetch(`${BASE_URL}/signup`, {
