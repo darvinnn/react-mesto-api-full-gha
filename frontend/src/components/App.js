@@ -119,7 +119,7 @@ function App() {
       checkToken(jwt)
         .then((res) => {
           if (res) {
-            getInfo()
+            setCurrentUser(res)
             getCards()
             setHeaderEmail(res.email);
             setIsLoggedIn(true)
@@ -141,12 +141,6 @@ function App() {
   const getCards = () => {
     api.getInitialCards()
       .then(data => setCards(data))
-      .catch(err => console.log(err))
-  }
-
-  const getInfo = () => {
-    api.getUserInfo()
-      .then(res => setCurrentUser(res))
       .catch(err => console.log(err))
   }
 

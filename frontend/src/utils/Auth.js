@@ -29,7 +29,7 @@ function checkToken(jwt) {
       "Authorization": `Bearer ${jwt}`
     }
   })
-    .then(res => checkResponse(res))
+    .then(res => checkResponse(res));
 }
 
 const checkResponse = res => res.ok ? res.json() : Promise.reject('Ошибка')
