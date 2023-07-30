@@ -87,13 +87,13 @@ function App() {
 
   const handleAddCard = (cardName, cardLink) => {
     api.addCard({ name: cardName, link: cardLink })
-      .then(newCard => setCards([newCard, ...cards]))
+      .then(newCard => setCards([...cards, newCard]))
       .then(closeAllPopups())
       .catch(err => console.log(err))
   }
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some(i => i._id === currentUser._id)
+    const isLiked = card.likes.some(i => i === currentUser._id)
 
     api.toggleLike(card._id, isLiked)
       .then(newCard => {
@@ -119,12 +119,12 @@ function App() {
       checkToken(jwt)
         .then((res) => {
           if (res) {
-            setHeaderEmail(res.data.email);
+            getInfo()
+            getCards()
+            setHeaderEmail(res.email);
             setIsLoggedIn(true)
             setIsLoading(false)
             navigate('/', { replace: true })
-            getCards()
-            getInfo()
           }
         })
         .catch(err => {

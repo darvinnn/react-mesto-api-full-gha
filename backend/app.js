@@ -11,6 +11,8 @@ const auth = require('./middlewares/auth');
 const errorsHandler = require('./middlewares/errorsHandler');
 const NotFoundError = require('./errors/NotFoundError');
 const { loginJoiValidation, createUserJoiValidation } = require('./middlewares/JoiValidators');
+const cors = require('./middlewares/CORS');
+const { errorLogger, requestLogger } = require('./middlewares/logger');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -24,6 +26,9 @@ const app = express();
 app.use(helmet());
 app.use(limiter);
 app.use(bodyParser.json());
+app.use(cors);
+
+app.use(requestLogger);
 app.post('/signin', celebrate(loginJoiValidation), login);
 app.post('/signup', celebrate(createUserJoiValidation), createUser);
 app.use(auth);
@@ -31,6 +36,7 @@ app.use('/users', usersRoute);
 app.use('/cards', cardsRoute);
 app.use('/*', (req, res, next) => { next(new NotFoundError('Такой страницы не существует')); });
 
+app.use(errorLogger);
 app.use(errors());
 app.use(errorsHandler);
 

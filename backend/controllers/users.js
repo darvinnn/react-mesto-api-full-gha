@@ -40,11 +40,13 @@ const createUser = (req, res, next) => {
       })
         .then((newUser) => {
           res.status(201).send({
-            name: newUser.name,
-            about: newUser.about,
-            avatar: newUser.avatar,
-            email: newUser.email,
-            _id: newUser._id,
+            data: {
+              name: newUser.name,
+              about: newUser.about,
+              avatar: newUser.avatar,
+              email: newUser.email,
+              _id: newUser._id,
+            },
           });
         })
         .catch((err) => {
