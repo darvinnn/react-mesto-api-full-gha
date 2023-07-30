@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
   const token = authorization.replace('Bearer ', '');
   let payload = null;
   try {
-    payload = jwt.verify(token, JWT_SECRET);
+    payload = jwt.verify(token, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : JWT_SECRET);
   } catch (err) {
     return res.status(401).send({ message: 'Необходима авторизация' });
   }

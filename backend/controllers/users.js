@@ -111,7 +111,7 @@ const login = (req, res, next) => {
       return bcrypt.compare(password, user.password)
         .then((isEqual) => {
           if (!isEqual) throw new AuthError('Неверный Email или пароль');
-          const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+          const token = jwt.sign({ _id: user._id }, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : JWT_SECRET, { expiresIn: '7d' });
           return res.status(200).send({ token });
         });
     })
