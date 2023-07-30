@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 84.201.164.185
+IP 84.201.164.185
 
 Frontend https://nikolaev-maxim-mesto.nomoreparties.co/
 
