@@ -120,11 +120,15 @@ function App() {
         .then((res) => {
           if (res) {
             setCurrentUser(res)
-            getCards()
-            setHeaderEmail(res.email);
-            setIsLoggedIn(true)
-            setIsLoading(false)
-            navigate('/', { replace: true })
+            api.getInitialCards()
+              .then(data => setCards(data))
+              .then(() => {
+                setHeaderEmail(res.email);
+                setIsLoggedIn(true)
+                setIsLoading(false)
+                navigate('/', { replace: true })
+              })
+              .catch(err => console.log(err))
           }
         })
         .catch(err => {
@@ -137,12 +141,6 @@ function App() {
   useEffect(() => {
     checkLocalToken()
   }, [isLoggedIn, isLoading])
-
-  const getCards = () => {
-    api.getInitialCards()
-      .then(data => setCards(data))
-      .catch(err => console.log(err))
-  }
 
   useEffect(() => {
     function closeByEscape(evt) {
