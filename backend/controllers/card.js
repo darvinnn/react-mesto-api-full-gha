@@ -31,7 +31,7 @@ const deleteCard = (req, res, next) => {
       }
     })
     .catch((err) => {
-      if (err.name === 'CastError') return next(new BadRequestError('Карточка с указанным id не найдена'));
+      if (err.name === 'CastError') return next(new BadRequestError('Что-то не так с id карточки'));
       return next(err);
     });
 };
@@ -43,7 +43,7 @@ const likeCard = (req, res, next) => {
       else res.send(card);
     })
     .catch((err) => {
-      if (err.name === 'CastError') return next(new BadRequestError('Карточка с указанным id не найдена'));
+      if (err.name === 'CastError') return next(new BadRequestError('Что-то не так с id карточки'));
       return next(err);
     });
 };
@@ -55,7 +55,7 @@ const dislikeCard = (req, res, next) => {
       else res.send(card);
     })
     .catch((err) => {
-      if (err.name === 'CastError') return next(new BadRequestError('Карточка с указанным id не найдена'));
+      if (err.name === 'CastError') return next(new BadRequestError('Что-то не так с id карточки'));
       return next(err);
     });
 };

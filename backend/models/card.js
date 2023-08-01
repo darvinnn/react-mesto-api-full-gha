@@ -10,6 +10,12 @@ const cardSchema = new mongoose.Schema({
   link: {
     type: String,
     required: true,
+    validate: {
+      validator(v) {
+        return /^https?:\/\/([w]{3}\.)?[\w\d\-/#]+\.[\w\d\-/#]+/.test(v);
+      },
+      message: () => 'Неправильная ссылка',
+    },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
@@ -20,11 +26,10 @@ const cardSchema = new mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'user',
     default: [],
-    required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 

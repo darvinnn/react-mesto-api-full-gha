@@ -2,12 +2,6 @@ const { Joi } = require('celebrate');
 
 const validationPattern = /^https?:\/\/([w]{3}\.)?[\w\d\-/#]+\.[\w\d\-/#]+/;
 
-const getUserJoiValidation = {
-  headers: Joi.object().keys({
-    authorization: Joi.string().required(),
-  }),
-};
-
 const getUserByIdJoiValidation = {
   params: Joi.object().keys({
     id: Joi.string().hex().length(24).required(),
@@ -16,14 +10,14 @@ const getUserByIdJoiValidation = {
 
 const updateUserJoiValidation = {
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(20),
-    about: Joi.string().min(2).max(30),
+    name: Joi.string().min(2).max(20).required(),
+    about: Joi.string().min(2).max(30).required(),
   }),
 };
 
 const updateAvatarJoiValidation = {
   body: Joi.object().keys({
-    avatar: Joi.string().pattern(validationPattern),
+    avatar: Joi.string().pattern(validationPattern).required(),
   }),
 };
 
@@ -41,7 +35,7 @@ const createUserJoiValidation = {
     name: Joi.string().min(2).max(20),
     about: Joi.string().min(2).max(30),
     avatar: Joi.string().pattern(validationPattern),
-  }).unknown(true),
+  }),
 };
 
 const createCardJoiValidation = {
@@ -58,7 +52,6 @@ const changeCardJoiValidation = {
 };
 
 module.exports = {
-  getUserJoiValidation,
   getUserByIdJoiValidation,
   updateUserJoiValidation,
   updateAvatarJoiValidation,

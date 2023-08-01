@@ -18,10 +18,7 @@ const getUsers = (req, res, next) => {
 
 const getUser = (req, res, next) => {
   User.findOne({ _id: req.user._id })
-    .then((user) => {
-      if (!user) throw new NotFoundError('Такого пользователя не существует');
-      res.status(200).send(user);
-    })
+    .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.name === 'CastError') return next(new BadRequestError('Пользователь с указанным id не найден'));
       return next(err);

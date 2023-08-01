@@ -25,7 +25,6 @@ const limiter = rateLimit({
 const app = express();
 
 app.use(helmet());
-app.use(limiter);
 app.use(bodyParser.json());
 app.use(cors);
 
@@ -36,6 +35,7 @@ app.get('/crash-test', () => {
 });
 
 app.use(requestLogger);
+app.use(limiter); // Я не понял замечания. Стоит удалить лимитер?
 app.post('/signin', celebrate(loginJoiValidation), login);
 app.post('/signup', celebrate(createUserJoiValidation), createUser);
 app.use(auth);
