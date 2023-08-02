@@ -8,7 +8,6 @@ const AlreadyExistsError = require('../errors/AlreadyExistsError');
 const BadRequestError = require('../errors/BadRequestError');
 
 const SALT_ROUNDS = 10;
-const JWT_SECRET = 'verysecuredphrse';
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -20,7 +19,7 @@ const getUser = (req, res, next) => {
   User.findOne({ _id: req.user._id })
     .then((user) => res.status(200).send(user))
     .catch((err) => {
-      if (err.name === 'CastError') return next(new BadRequestError('Пользователь с указанным id не найден'));
+      if (err.name === 'CastError') return next(new BadRequestError('Что-то не так с id пользователя'));
       return next(err);
     });
 };
@@ -29,7 +28,6 @@ const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-  if (!email) throw new AuthError('Необходимо ввести email');
   bcrypt.hash(password, SALT_ROUNDS)
     .then((hash) => {
       User.create({
@@ -64,7 +62,7 @@ const getUserById = (req, res, next) => {
       }
     })
     .catch((err) => {
-      if (err.name === 'CastError') return next(new BadRequestError('Пользователь с указанным id не найден'));
+      if (err.name === 'CastError') return next(new BadRequestError('Что-то не так с id пользователя'));
       return next(err);
     });
 };
@@ -108,7 +106,7 @@ const login = (req, res, next) => {
       return bcrypt.compare(password, user.password)
         .then((isEqual) => {
           if (!isEqual) throw new AuthError('Неверный Email или пароль');
-          const token = jwt.sign({ _id: user._id }, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : JWT_SECRET, { expiresIn: '7d' });
+          const token = jwt.sign({ _id: user._id }, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET_PRODUCTION : process.env.JWT_SECRET_DEV, { expiresIn: '7d' });
           return res.status(200).send({ token });
         });
     })
@@ -123,5 +121,4 @@ module.exports = {
   updateUser,
   updateUserAvatar,
   login,
-  JWT_SECRET,
 };

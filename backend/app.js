@@ -35,7 +35,7 @@ app.get('/crash-test', () => {
 });
 
 app.use(requestLogger);
-app.use(limiter); // Я не понял замечания. Стоит удалить лимитер?
+app.use(limiter);
 app.post('/signin', celebrate(loginJoiValidation), login);
 app.post('/signup', celebrate(createUserJoiValidation), createUser);
 app.use(auth);
