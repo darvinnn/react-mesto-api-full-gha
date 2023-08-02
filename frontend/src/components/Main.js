@@ -9,6 +9,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardDele
   const currentUser = useContext(CurrentUserContext)
   const { name: userName, about: userDescription, avatar: userAvatar } = currentUser
 
+  console.log('Before render');
   return (
     <main className="main">
 

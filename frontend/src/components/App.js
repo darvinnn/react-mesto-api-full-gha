@@ -86,7 +86,7 @@ function App() {
 
   const handleAddCard = (cardName, cardLink) => {
     api.addCard({ name: cardName, link: cardLink })
-      .then(newCard => setCards([...cards, newCard]))
+      .then(newCard => setCards([newCard, ...cards]))
       .then(closeAllPopups())
       .catch(err => console.log(err))
   }
@@ -118,10 +118,12 @@ function App() {
       checkToken(jwt)
         .then((res) => {
           if (res) {
+            console.log('Before setCurrentUser');
             setCurrentUser(res)
             api.getInitialCards()
               .then(data => setCards(data))
               .then(() => {
+                console.log('After setCards');
                 setHeaderEmail(res.email);
                 setIsLoggedIn(true)
                 setIsLoading(false)
