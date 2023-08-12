@@ -28,14 +28,8 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(cors);
 
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
-
 app.use(requestLogger);
-app.use(limiter); // Я не понял замечания. Стоит удалить лимитер?
+app.use(limiter);
 app.post('/signin', celebrate(loginJoiValidation), login);
 app.post('/signup', celebrate(createUserJoiValidation), createUser);
 app.use(auth);
