@@ -13,7 +13,7 @@ function Login({ setHeaderField, onSubmit }) {
 
   useEffect(() => {
     setHeaderField('Login')
-  })
+  }, [])
 
   return (
     <section className="login">

@@ -4,7 +4,7 @@ import { useEffect } from "react"
 function PageNotFound({ setHeaderField }) {
   useEffect(() => {
     setHeaderField('404')
-  })
+  }, [])
   const navigate = useNavigate()
   function handleGoBack() {
     navigate(-1)

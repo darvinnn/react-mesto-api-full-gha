@@ -5,11 +5,10 @@ import CurrentUserContext from "../contexts/CurrentUserContext.js";
 function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardDelete, onCardLike, cards, setHeaderField }) {
   useEffect(() => {
     setHeaderField(null)
-  })
+  }, [])
   const currentUser = useContext(CurrentUserContext)
   const { name: userName, about: userDescription, avatar: userAvatar } = currentUser
 
-  console.log('Before render');
   return (
     <main className="main">
 

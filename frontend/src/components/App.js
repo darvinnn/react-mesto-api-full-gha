@@ -118,17 +118,15 @@ function App() {
       checkToken(jwt)
         .then((res) => {
           if (res) {
-            console.log('Before setCurrentUser');
             setCurrentUser(res)
             api.getInitialCards()
               .then(data => setCards(data))
               .then(() => {
-                console.log('After setCards');
                 setHeaderEmail(res.email);
                 setIsLoggedIn(true)
                 setIsLoading(false)
-                navigate('/', { replace: true })
               })
+              .then(() => navigate('/', { replace: true }))
               .catch(err => console.log(err))
           }
         })

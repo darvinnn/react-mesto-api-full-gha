@@ -14,7 +14,7 @@ function Register({ onSubmit, setHeaderField }) {
 
   useEffect(() => {
     setHeaderField('Register')
-  })
+  }, [])
 
   return (
     <>
