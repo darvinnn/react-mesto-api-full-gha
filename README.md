@@ -5,5 +5,3 @@
 ### Ссылки на проект
 
 Frontend https://nikolaev-maxim-mesto.nomoreparties.co/
-
-Backend https://api.nikolaev-maxim-mesto.nomoreparties.co/
